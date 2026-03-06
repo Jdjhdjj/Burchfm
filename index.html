@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>AKSAKA | ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@300;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #ff0055; --ai: #00f2ff; --glass: rgba(255, 255, 255, 0.05); }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: #000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; height: 100dvh; overflow: hidden; }
+
+        /* VIDEO BG */
+        .video-bg { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+        video#eye-bg { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+
+        /* LOGIN */
+        #login-screen { position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; transition: 0.8s; }
+        .aksaka-title { font-family: 'Orbitron'; font-size: 3.5rem; color: #fff; text-shadow: 0 0 30px var(--accent); letter-spacing: 10px; cursor: pointer; margin-bottom: 40px; }
+
+        /* MAIN APP */
+        #main-app { display: none; position: fixed; inset: 0; z-index: 1000; background: #050505; overflow-y: auto; padding-bottom: 120px; }
+        .container { max-width: 450px; margin: 0 auto; padding: 25px; }
+
+        /* JOKI DESIGN */
+        .joki-card { background: #111; border-radius: 30px; padding: 20px; border: 1px solid #222; }
+        .joki-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: var(--glass); border-radius: 15px; margin-bottom: 10px; border: 1px solid transparent; transition: 0.3s; }
+        .joki-item:focus-within { border-color: var(--accent); background: rgba(255,0,85,0.1); }
+        .price-input { background: transparent; border: none; color: var(--accent); font-family: 'JetBrains Mono'; font-weight: 800; text-align: right; width: 80px; outline: none; }
+
+        /* AI TERMINAL */
+        #ai-ui { display: none; position: fixed; inset: 0; z-index: 5000; background: #000; flex-direction: column; padding: 20px; }
+        .ai-eye { width: 100%; height: 200px; border-radius: 20px; overflow: hidden; border: 1px solid var(--ai); margin-bottom: 15px; }
+        .ai-eye video { width: 100%; height: 100%; object-fit: cover; }
+        #terminal { flex: 1; overflow-y: auto; font-family: 'JetBrains Mono'; color: var(--ai); font-size: 11px; padding: 10px; }
+
+        /* NAV */
+        nav { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); width: 90%; height: 75px; background: rgba(15,15,15,0.8); backdrop-filter: blur(20px); border-radius: 30px; display: flex; justify-content: space-around; align-items: center; border: 1px solid #333; z-index: 2000; }
+        .nav-link { font-family: 'Orbitron'; font-size: 10px; color: #444; cursor: pointer; }
+        .nav-link.active { color: #fff; text-shadow: 0 0 10px #fff; }
+
+        /* EDIT MODE NOTIF */
+        .edit-notif { font-size: 8px; color: #555; text-align: center; margin-top: 10px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div class="video-bg">
+        <video id="eye-bg" autoplay muted loop playsinline><source src="https://files.catbox.moe/g1h8cv.mp4" type="video/mp4"></video>
+    </div>
+
+    <div id="login-screen">
+        <h1 class="aksaka-title" id="aksaka-trigger">AKSAKA</h1>
+        <button class="px-12 py-5 bg-white text-black font-black rounded-xl" id="enter-btn">INITIALIZE</button>
+        <p class="text-[8px] mt-4 text-zinc-800 tracking-[5px]">CORE_ACCESS_V21</p>
+    </div>
+
+    <div id="main-app">
+        <div class="container">
+            <div id="core" class="tab-panel">
+                <center><img src="https://files.catbox.moe/kzrkbp.jpg" class="w-32 h-32 rounded-[40px] mb-10 shadow-2xl object-cover"></center>
+                <div class="joki-card">
+                    <div id="type-target" class="font-mono text-[12px] text-emerald-400 leading-relaxed"></div>
+                </div>
+            </div>
+
+            <div id="joki" class="tab-panel hidden">
+                <h2 class="text-center font-black text-zinc-600 tracking-widest mb-6 text-xs">JOKI_DATABASE</h2>
+                <div class="joki-card">
+                    <div class="joki-item">
+                        <span class="text-[10px] font-bold">LEGENDARY</span>
+                        <input type="text" class="price-input" value="110K" id="price-1">
+                    </div>
+                    <div class="joki-item">
+                        <span class="text-[10px] font-bold">MASTER</span>
+                        <input type="text" class="price-input" value="100K" id="price-2">
+                    </div>
+                    <div class="joki-item">
+                        <span class="text-[10px] font-bold">ELITE</span>
+                        <input type="text" class="price-input" value="90K" id="price-3">
+                    </div>
+                    <p class="edit-notif">KLIK ANGKA UNTUK EDIT HARGA</p>
+                    <a href="https://wa.me/6288902072245" id="wa-link" class="block w-full py-4 bg-white text-black text-center font-black rounded-xl mt-6">UPDATE_&_ORDER</a>
+                </div>
+            </div>
+
+            <div id="partner" class="tab-panel hidden text-center">
+                <img src="https://files.catbox.moe/j44mvd.jpg" class="w-40 h-40 mx-auto rounded-[50px] border border-white/10 shadow-2xl mb-8">
+                <h3 id="ayu-trigger" class="text-3xl font-black cursor-pointer hover:text-pink-500 transition">AYU_CORE</h3>
+                <p class="text-[8px] text-zinc-700 tracking-[10px] mt-4">PRIVATE_VAULT</p>
+            </div>
+        </div>
+
+        <nav>
+            <div class="nav-link active" onclick="switchTab('core', this)">CORE</div>
+            <div class="nav-link" onclick="switchTab('joki', this)">WORK</div>
+            <div class="nav-link" onclick="switchTab('partner', this)">LINK</div>
+        </nav>
+    </div>
+
+    <div id="ai-ui">
+        <div class="ai-eye">
+            <video autoplay muted loop playsinline><source src="https://files.catbox.moe/g1h8cv.mp4" type="video/mp4"></video>
+        </div>
+        <div id="terminal">>> SYSTEM_OVERRIDE_ACTIVE...<br>>> WELCOME, AKSAKA_ARCH.</div>
+        <div class="flex bg-zinc-900 p-4 rounded-xl mt-4">
+            <input type="text" id="ai-input" class="bg-transparent border-none outline-none text-white w-full font-mono text-sm" placeholder="Send logic command...">
+        </div>
+        <button onclick="location.reload()" class="mt-auto py-4 text-[10px] text-zinc-800">TERMINATE_SESSION</button>
+    </div>
+
+    <audio id="bgm" loop><source src="https://files.catbox.moe/6v0p6a.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        // --- FIX AKSES LAYER & LOGIN ---
+        const login = document.getElementById('login-screen');
+        const app = document.getElementById('main-app');
+        const ai = document.getElementById('ai-ui');
+        const bgm = document.getElementById('bgm');
+
+        document.getElementById('enter-btn').addEventListener('click', () => {
+            bgm.play().catch(()=>{});
+            login.style.transform = "translateY(-100%)";
+            setTimeout(() => { login.style.display = 'none'; app.style.display = 'block'; type(); }, 600);
+        });
+
+        // --- LAYER 6: AKSAKA (KLIK JUDUL 5X) ---
+        let aksakaClick = 0;
+        document.getElementById('aksaka-trigger').addEventListener('click', () => {
+            aksakaClick++;
+            if(aksakaClick >= 5) {
+                let p = prompt("AKSAKA_KEY:");
+                if(p === "0207") {
+                    login.style.display = 'none';
+                    app.style.display = 'none';
+                    ai.style.display = 'flex';
+                }
+                aksakaClick = 0;
+            }
+        });
+
+        // --- PARTNER VAULT (KLIK NAMA AYU 5X) ---
+        let ayuClick = 0;
+        document.getElementById('ayu-trigger').addEventListener('click', () => {
+            ayuClick++;
+            if(ayuClick >= 5) {
+                let pin = prompt("VAULT_PIN:");
+                if(pin === "2245") alert("Security Log: Authorized. All systems Gacor.");
+                ayuClick = 0;
+            }
+        });
+
+        // --- LIVE EDIT HARGA LOGIC ---
+        document.getElementById('wa-link').addEventListener('click', function(e) {
+            const h1 = document.getElementById('price-1').value;
+            const h2 = document.getElementById('price-2').value;
+            const h3 = document.getElementById('price-3').value;
+            // Update link WA otomatis bawa harga baru
+            this.href = `https://wa.me/6288902072245?text=Halo%20Aksaka,%20mau%20order%20joki.%0APrice%20List:%0A-%20Legendary:%20${h1}%0A-%20Master:%20${h2}%0A-%20Elite:%20${h3}`;
+        });
+
+        // --- SYSTEM CORE ---
+        function switchTab(t, el) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+            document.getElementById(t).classList.remove('hidden');
+            el.classList.add('active');
+            if(t === 'core') type();
+        }
+
+        const txt = [">> DECRYPTING_USER_DATA...", ">> NAME: AKSAKA_ARCH", ">> STATUS: TAKEN_BY_AYU", ">> POWER: FULL_OVERDRIVE"];
+        function type() {
+            let l=0, c=0; const t = document.getElementById('type-target'); t.innerHTML="";
+            function go() {
+                if(l < txt.length) {
+                    if(c < txt[l].length) { t.innerHTML += txt[l].charAt(c); c++; setTimeout(go, 30); }
+                    else { t.innerHTML += "<br>"; l++; c=0; setTimeout(go, 200); }
+                }
+            } go();
+        }
+
+        // --- AI CHAT ---
+        document.getElementById('ai-input').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                const term = document.getElementById('terminal');
+                term.innerHTML += `<br><span style="color:#fff;">>> ${this.value}</span>`;
+                setTimeout(() => {
+                    term.innerHTML += `<br>[AI]: Perintah diterima. Logic sedang di-compile.`;
+                    term.scrollTop = term.scrollHeight;
+                }, 400);
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
