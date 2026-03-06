@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@300;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #ff0055; --ai: #00f2ff; --glass: rgba(255, 255, 255, 0.05); }
+        :root { --accent: #8b0000; --ai: #c00030; --glass: rgba(255, 255, 255, 0.04); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: #000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; height: 100dvh; overflow: hidden; }
 
@@ -17,7 +17,7 @@
 
         /* LOGIN */
         #login-screen { position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; transition: 0.8s; }
-        .aksaka-title { font-family: 'Orbitron'; font-size: 3.5rem; color: #fff; text-shadow: 0 0 30px var(--accent); letter-spacing: 10px; cursor: pointer; margin-bottom: 40px; }
+        .aksaka-title { font-family: 'Orbitron'; font-size: 3.5rem; color: #8b0000; text-shadow: 0 0 5px #ff0000, 0 0 15px #8b0000, 0 0 30px #3b0000; letter-spacing: 10px; cursor: pointer; margin-bottom: 40px; animation:glow 3s infinite; }
 
         /* MAIN APP */
         #main-app { display: none; position: fixed; inset: 0; z-index: 1000; background: #050505; overflow-y: auto; padding-bottom: 120px; }
@@ -51,8 +51,8 @@
     </div>
 
     <div id="login-screen">
-        <h1 class="aksaka-title" id="aksaka-trigger">AKSAKA</h1>
-        <button class="px-12 py-5 bg-white text-black font-black rounded-xl" id="enter-btn">INITIALIZE</button>
+        <h1 class="aksaka-title" id="aksaka-trigger">KAIROS</h1>
+        <button class="px-12 py-5 bg-white text-black font-black rounded-xl" id="enter-btn">ENTER SYSTEM</button>
         <p class="text-[8px] mt-4 text-zinc-800 tracking-[5px]">CORE_ACCESS_V21</p>
     </div>
 
@@ -101,7 +101,7 @@
 
     <div id="ai-ui">
         <div class="ai-eye">
-            <video autoplay muted loop playsinline><source src="https://files.catbox.moe/g1h8cv.mp4" type="video/mp4"></video>
+            <video autoplay muted loop playsinline><source src="BG_06_Final_Comp.mp4" type="video/mp4"></video>
         </div>
         <div id="terminal">>> SYSTEM_OVERRIDE_ACTIVE...<br>>> WELCOME, AKSAKA_ARCH.</div>
         <div class="flex bg-zinc-900 p-4 rounded-xl mt-4">
@@ -110,7 +110,7 @@
         <button onclick="location.reload()" class="mt-auto py-4 text-[10px] text-zinc-800">TERMINATE_SESSION</button>
     </div>
 
-    <audio id="bgm" loop><source src="https://files.catbox.moe/6v0p6a.mp3" type="audio/mpeg"></audio>
+    <audio id="bgm" loop><source src="lofium-samurai-lofium-292016.mp3" type="audio/mpeg"></audio>
 
     <script>
         // --- FIX AKSES LAYER & LOGIN ---
@@ -169,7 +169,7 @@
             if(t === 'core') type();
         }
 
-        const txt = [">> DECRYPTING_USER_DATA...", ">> NAME: AKSAKA_ARCH", ">> STATUS: TAKEN_BY_AYU", ">> POWER: FULL_OVERDRIVE"];
+        const txt = [">> DECRYPTING_USER_DATA...", ">> NAME: Kairòs", ">> SERVICE: Bloodstrike Joki", ">> STATUS:READY FOR ORDER "];
         function type() {
             let l=0, c=0; const t = document.getElementById('type-target'); t.innerHTML="";
             function go() {
