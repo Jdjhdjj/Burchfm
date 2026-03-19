@@ -1,0 +1,662 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level Up · gaming hub</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #0d0f14;
+      color: #e3e6f0;
+      line-height: 1.5;
+    }
+
+    /* smooth scroll & container */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .navbar {
+      background: #151a22;
+      padding: 1rem 0;
+      border-bottom: 2px solid #2f3b4b;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+      background: rgba(21, 26, 34, 0.96);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #b16bf0, #5f9cf0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo i {
+      background: none;
+      -webkit-text-fill-color: #b16bf0; 
+      margin-right: 6px;
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: #bdc5d6;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a i {
+      font-size: 1rem;
+      color: #7388b0;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      text-shadow: 0 0 6px #5f9cf0;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #3d4e6b;
+      border-radius: 40px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      color: #d0daf5;
+      transition: 0.2s;
+      cursor: default;
+    }
+    .btn-outline i {
+      margin-right: 6px;
+    }
+    .btn-outline:hover {
+      border-color: #6f8fcf;
+      background: #1f2a38;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(145deg, #10131e 0%, #1b212e 100%);
+      padding: 4rem 0;
+      border-bottom: 1px solid #2d3545;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 350px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(to right, #f0e9d8, #b2c9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #a2b6d9;
+      margin: 1.5 0 2rem 0;
+      max-width: 550px;
+    }
+
+    .hero-badge {
+      background: #2d374b;
+      border-radius: 60px;
+      padding: 0.4rem 1.5rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      border-left: 4px solid #9970db;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .stat-item h3 {
+      font-size: 1.8rem;
+      color: white;
+    }
+    .stat-item span {
+      color: #8da0c0;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-image {
+      flex: 1 1 350px;
+      background: #212838;
+      border-radius: 30px;
+      padding: 1.5rem;
+      box-shadow: 0 30px 30px -10px #00000066;
+      border: 1px solid #3b455a;
+    }
+
+    .game-controller-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .ctrl-icon {
+      background: #2c364b;
+      border-radius: 24px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #84a2ff;
+      border-bottom: 3px solid #4d6190;
+    }
+    .ctrl-icon small {
+      display: block;
+      font-size: 0.8rem;
+      color: #b7c7ee;
+      margin-top: 6px;
+    }
+
+    /* ===== FEATURED GAMES SECTION ===== */
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin: 3rem 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title i {
+      color: #6d8ae0;
+      font-size: 2.2rem;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .game-card {
+      background: #1c222d;
+      border-radius: 24px;
+      padding: 1.4rem 1.4rem 2rem 1.4rem;
+      transition: transform 0.25s, box-shadow 0.3s;
+      border: 1px solid #323e54;
+      box-shadow: 0 12px 15px -8px #00000080;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      border-color: #657eb3;
+      box-shadow: 0 25px 25px -10px #02060c;
+    }
+
+    .game-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #2c3447;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #6380cf;
+      margin-bottom: 1.4rem;
+      border: 1px solid #405073;
+    }
+
+    .game-category {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #86a0d9;
+    }
+
+    .game-card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0.2rem 0 0.3rem;
+    }
+
+    .game-meta {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0 1rem 0;
+      color: #9fb0d1;
+      font-size: 0.95rem;
+    }
+    .game-meta i {
+      margin-right: 4px;
+      color: #e0b864;
+    }
+
+    .game-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+    .tag {
+      background: #262f41;
+      border-radius: 30px;
+      padding: 0.25rem 1rem;
+      font-size: 0.8rem;
+      color: #b7ceff;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #d4e0ff;
+    }
+    .price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #7b90b5;
+    }
+    .btn-download {
+      background: #2b3e63;
+      border: none;
+      border-radius: 40px;
+      padding: 0.6rem 1.5rem;
+      color: white;
+      font-weight: 600;
+      cursor: default;
+      transition: 0.15s;
+    }
+    .btn-download i {
+      margin-right: 6px;
+    }
+    .btn-download:hover {
+      background: #3b5585;
+    }
+
+    /* ===== GENRE BADGES / TRENDING ===== */
+    .genre-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #151e2b;
+      border-radius: 80px;
+      padding: 0.8rem 2rem;
+      margin: 2rem 0 3rem;
+      border: 1px solid #31415a;
+    }
+    .genre-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #adc0ea;
+    }
+    .genre-item i {
+      background: #2f3d5a;
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    /* ===== LIVE STREAM / COMMUNITY ===== */
+    .community-section {
+      display: flex;
+      gap: 2rem;
+      margin: 4rem 0;
+      flex-wrap: wrap;
+    }
+    .stream-panel {
+      flex: 2 1 300px;
+      background: #171f2b;
+      border-radius: 40px;
+      padding: 2rem;
+      border: 1px solid #314864;
+    }
+    .stream-panel h2 {
+      font-size: 2rem;
+    }
+    .stream-avatar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+    .avatar {
+      background: linear-gradient(145deg, #6e51b0, #2f539e);
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .stream-info h4 {
+      font-size: 1.3rem;
+    }
+    .live-badge {
+      background: #c93b3b;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .right-panel {
+      flex: 1 1 220px;
+      background: #121a25;
+      border-radius: 40px;
+      padding: 2rem 1.5rem;
+      border: 1px solid #2f4468;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .right-panel i {
+      font-size: 2.8rem;
+      color: #e3b35c;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b1017;
+      padding: 3rem 0;
+      margin-top: 4rem;
+      border-top: 1px solid #222e40;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+    }
+    .footer-col p {
+      color: #8699bb;
+      margin-top: 1rem;
+    }
+    .footer-col a {
+      display: block;
+      color: #98abcf;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+    .copyright {
+      text-align: center;
+      color: #4d6085;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    /* responsive touches */
+    @media (max-width: 700px) {
+      .nav-container { flex-direction: column; gap: 1rem; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .genre-strip { border-radius: 30px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <i class="fas fa-gamepad"></i> LEVEL<span style="color:white; background: none; -webkit-text-fill-color: white;">UP</span>
+      </div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-compass"></i> Discover</a>
+        <a href="#"><i class="fas fa-trophy"></i> Esports</a>
+        <a href="#"><i class="fas fa-cloud-download-alt"></i> Library</a>
+        <a href="#"><i class="fas fa-users"></i> Community</a>
+      </div>
+      <div class="btn-outline"><i class="fas fa-user-astronaut"></i> SIGN IN</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-bolt" style="margin-right: 5px;"></i> LIVE: 14K PLAYERS</span>
+        <h1>play, <br>connect, <br><span style="background: linear-gradient(135deg,#d2a1ff,#5f8eff); -webkit-background-clip:text;">dominate.</span></h1>
+        <p>Your next favourite game is waiting. Explore the largest multiplayer universe — zero lag, full immersion.</p>
+        <div class="hero-stats">
+          <div class="stat-item"><h3>600+</h3><span>games</span></div>
+          <div class="stat-item"><h3>32M</h3><span>players</span></div>
+          <div class="stat-item"><h3>4.8</h3><span>rating</span></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="game-controller-grid">
+          <div class="ctrl-icon"><i class="fas fa-headset"></i><small>voice chat</small></div>
+          <div class="ctrl-icon"><i class="fas fa-gamepad"></i><small>crossplay</small></div>
+          <div class="ctrl-icon"><i class="fas fa-tower-broadcast"></i><small>4K 120fps</small></div>
+          <div class="ctrl-icon"><i class="fas fa-clock"></i><small>cloud save</small></div>
+        </div>
+        <p style="text-align: center; margin-top: 1.8rem; color:#b6c7f0;"><i class="fas fa-check-circle" style="color:#60d394;"></i> 200+ free-to-play titles</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- genre quick nav -->
+    <div class="genre-strip">
+      <span class="genre-item"><i class="fas fa-crosshairs"></i> SHOOTER</span>
+      <span class="genre-item"><i class="fas fa-helmet-battle"></i> BATTLE ROYALE</span>
+      <span class="genre-item"><i class="fas fa-dragon"></i> RPG</span>
+      <span class="genre-item"><i class="fas fa-car"></i> RACING</span>
+      <span class="genre-item"><i class="fas fa-chess-queen"></i> STRATEGY</span>
+    </div>
+
+    <!-- featured games -->
+    <div class="section-title">
+      <i class="fas fa-fire-flame-curved"></i> 
+      <span>🔥 trending now</span>
+    </div>
+
+    <div class="game-grid">
+      <!-- card 1 -->
+      <div class="game-card">
+        <div class="game-img"><i class="fas fa-dragon"></i></div>
+        <div class="game-category">action / rpg</div>
+        <h3>DRAGONFALL</h3>
+        <div class="game-meta"><span><i class="fas fa-user-group"></i> 18.2k</span><span><i class="fas fa-star" style="color: gold;"></i> 4.9</span></div>
+        <div class="game-tags">
+          <span class="tag">open world</span>
+          <span class="tag">multiplayer</span>
+        </div>
+        <div class="card-footer">
+          <span class="price">$29.99</span>
+          <div class="btn-download"><i class="fas fa-download"></i> GET</div>
+        </div>
+      </div>
+
+      <!-- card 2 -->
+      <div class="game-card">
+        <div class="game-img"><i class="fas fa-robot"></i></div>
+        <div class="game-category">sci-fi / shooter</div>
+        <h3>MECH BREAK</h3>
+        <div class="game-meta"><span><i class="fas fa-user-group"></i> 9.7k</span><span><i class="fas fa-star"></i> 4.7</span></div>
+        <div class="game-tags">
+          <span class="tag">pvp</span>
+          <span class="tag">6v6</span>
+          <span class="tag">mechs</span>
+        </div>
+        <div class="card-footer">
+          <span class="price"><small>free</small></span>
+          <div class="btn-download"><i class="fas fa-download"></i> PLAY</div>
+        </div>
+      </div>
+
+      <!-- card 3 -->
+      <div class="game-card">
+        <div class="game-img"><i class="fas fa-tree"></i></div>
+        <div class="game-category">survival</div>
+        <h3>FROSTBORN</h3>
+        <div class="game-meta"><span><i class="fas fa-user-group"></i> 24.3k</span><span><i class="fas fa-star"></i> 4.8</span></div>
+        <div class="game-tags">
+          <span class="tag">crafting</span>
+          <span class="tag">co-op</span>
+        </div>
+        <div class="card-footer">
+          <span class="price">$19.99</span>
+          <div class="btn-download"><i class="fas fa-download"></i> GET</div>
+        </div>
+      </div>
+
+      <!-- card 4 -->
+      <div class="game-card">
+        <div class="game-img"><i class="fas fa-mask"></i></div>
+        <div class="game-category">battle royale</div>
+        <h3>NIGHTFALL</h3>
+        <div class="game-meta"><span><i class="fas fa-user-group"></i> 42.1k</span><span><i class="fas fa-star"></i> 4.6</span></div>
+        <div class="game-tags">
+          <span class="tag">100 players</span>
+          <span class="tag">quick match</span>
+        </div>
+        <div class="card-footer">
+          <span class="price"><small>free</small></span>
+          <div class="btn-download"><i class="fas fa-download"></i> PLAY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- community + stream card -->
+    <div class="community-section">
+      <div class="stream-panel">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-circle" style="color:#ec5353; font-size: 0.9rem;"></i>
+          <span>LIVE NOW</span>
+        </div>
+        <h2>🏆 WORLD CUP FINALS</h2>
+        <p>Watch pro teams compete for $2M prize — live from Tokyo.</p>
+        <div class="stream-avatar">
+          <div class="avatar"><i class="fas fa-user-ninja"></i></div>
+          <div class="stream-info">
+            <h4>ShadowFPS <span style="font-weight: 400; font-size: 1rem;">& team</span></h4>
+            <div class="live-badge"><i class="fas fa-eye"></i> 27.3k watching</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 1.8rem;">
+          <span style="background: #314e7a; border-radius: 50px; padding: 0.5rem 2rem;"><i class="fab fa-twitch"></i> WATCH</span>
+          <span style="background: #292e3a; border-radius: 50px; padding: 0.5rem 2rem;"><i class="fas fa-video"></i> highlights</span>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <i class="fas fa-headset"></i>
+        <h3 style="margin: 1rem 0 0.5rem;">voice lounge</h3>
+        <p style="color:#aac0ec;">Find teammates, share strats, and hang out.</p>
+        <div style="background: #1c2d47; border-radius: 60px; padding: 0.8rem; margin-top: 1rem; text-align: center; border: 1px solid #345187;">
+          <i class="fas fa-microphone"></i> 4.2k online
+        </div>
+      </div>
+    </div>
+
+    <!-- new release section -->
+    <div class="section-title" style="margin-top: 2rem;">
+      <i class="fas fa-rocket"></i> 
+      <span>new & upcoming</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem;">
+      <div style="background: #1a212e; border-radius: 30px; padding: 1.5rem;"><i class="fas fa-crown" style="color: gold;"></i> <strong>Eternal Ascent</strong> <span style="color:#9ab0da; display: block;">coming may 12</span></div>
+      <div style="background: #1a212e; border-radius: 30px; padding: 1.5rem;"><i class="fas fa-user-secret"></i> <strong>Neon Slayer</strong> <span style="color:#9ab0da; display: block;">demo out now</span></div>
+      <div style="background: #1a212e; border-radius: 30px; padding: 1.5rem;"><i class="fas fa-puzzle-piece"></i> <strong>PuzzleForge</strong> <span style="color:#9ab0da; display: block;">free update</span></div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo" style="font-size: 1.8rem;"><i class="fas fa-gamepad"></i> LEVELUP</div>
+          <p>play anywhere, <br>with anyone.</p>
+        </div>
+        <div class="footer-col">
+          <h4>company</h4>
+          <a href="#">about</a>
+          <a href="#">careers</a>
+          <a href="#">press</a>
+        </div>
+        <div class="footer-col">
+          <h4>resources</h4>
+          <a href="#">help center</a>
+          <a href="#">safety</a>
+          <a href="#">mods</a>
+        </div>
+        <div class="footer-col">
+          <h4>social</h4>
+          <div class="social-icons">
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-tiktok"></i>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <i class="fas fa-copyright"></i> Level Up gaming, 2025 — all rights reserved. 
+        <span style="display: inline-block; margin-left: 1rem;">🕹️ #gameon</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+```
